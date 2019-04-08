@@ -32,10 +32,10 @@ class Input extends Component<Props, State> {
           className={`nes-input ${showNaNError ? "is-error" : ""}`}
           onKeyUp={() => {
             if (inputRef) {
-              if (inputRef.value.length && isNaN(parseInt(inputRef.value))) {
+              if (inputRef.value.length && isNaN(parseFloat(inputRef.value))) {
                 this.setState({ isNaN: true });
               } else {
-                let value: number = parseInt(inputRef.value);
+                let value: number = parseFloat(inputRef.value);
                 this.setState({ isNaN: false });
                 if (onInputChange) onInputChange(value || -1);
               }
