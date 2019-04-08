@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, InputHTMLAttributes } from "react";
 
 export type Unit =
   | "Football Fields"
@@ -13,8 +13,6 @@ interface Props {
   onChange: (newValue: Unit) => void;
 }
 
-let selectRef: HTMLSelectElement | null;
-
 class UnitSelector extends Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -28,9 +26,8 @@ class UnitSelector extends Component<Props> {
         <label>{title}</label>
         <div className="nes-select">
           <select
-            ref={ref => (selectRef = ref)}
-            onChange={() => {
-              if (selectRef) onChange((selectRef.value as Unit) || "Kilometer");
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              onChange(e.target.value as Unit);
             }}
             value={selected}
           >
